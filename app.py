@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ================================================================================
-ĐỀ TÀI SỐ 5 — AI CHO TRÒ CHƠI CARO BẰNG HEURISTIC  (Bản Streamlit)
+ĐỀ TÀI SỐ 5 — AI CHO TRÒ CHƠI CARO BẰNG HEURISTIC 
 ================================================================================
 Chạy:   streamlit run app.py
 Bàn cờ: 15 x 15  |  Người = X  |  Máy = O  |  Thắng khi đủ 5 quân liên tiếp.
