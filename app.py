@@ -258,18 +258,22 @@ def do_human_move(r, c):
     ss = st.session_state
     if ss.state != CONTINUE or ss.turn != HUMAN or ss.board[r][c] != EMPTY:
         return
+
     ss.board[r][c] = HUMAN
     ss.last_move = (r, c)
     ss.minimax_mark = None
     ss.log.append(f"#{len(ss.log)+1} — Người (X) → ({r}, {c})")
     ss.explain = f"Bạn đánh ({r}, {c})."
     ss.state = check_state(ss.board)
-    # Nếu KHÔNG tạm dừng -> máy đáp ngay. Nếu tạm dừng -> chờ bấm "Máy đánh nước này"
-    if ss.state == CONTINUE and ss.get("auto_ai", True):
-        do_ai_move()
-       else:
-        ss.turn = AI
-        ss.explain = f"Bạn đánh ({r}, {c}). Máy đang chờ bạn bấm ▶️ Máy đánh nước này."
+
+    # Nếu không tạm dừng thì máy đánh ngay.
+    # Nếu tạm dừng thì chuyển lượt sang máy và chờ người dùng bấm nút.
+    if ss.state == CONTINUE:
+        if ss.get("auto_ai", True):
+            do_ai_move()
+        else:
+            ss.turn = AI
+            ss.explain = f"Bạn đánh ({r}, {c}). Máy đang chờ bạn bấm ▶️ Máy đánh nước này."
 
 
 def do_ai_move():
